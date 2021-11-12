@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+
     inner class MyOnCheckedChangeListener : CompoundButton.OnCheckedChangeListener {
         override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
             when (buttonView.id) {
