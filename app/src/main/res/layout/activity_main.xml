@@ -1,67 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity" >
+    android:layout_height="match_parent">
 
-    <CheckBox
-        android:id="@+id/checkBox1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="conditions1" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <CheckBox
-        android:id="@+id/checkBox2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="conditions2" />
+        <LinearLayout
+            style="@style/Container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            tools:ignore="HardcodedText">
 
-    <CheckBox
-        android:id="@+id/checkBox3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="conditions3" />
+            <Button
+                android:id="@+id/test_trace"
+                style="@style/EntryButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Trace Canary" />
 
-    <CheckBox
-        android:id="@+id/checkBox4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="conditions4" />
+            <TextView
+                style="@style/DescText"
+                android:text="Provide multiple functions like FPS monitor/ANR Catch/Method Tracing and other gadgets to detect some specific problems." />
 
+            <View style="@style/Divider" />
 
-    <CheckBox
-        android:id="@+id/checkBox5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="conditions5" />
+            <Button
+                android:id="@+id/test_leak"
+                style="@style/EntryButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Resource Canary" />
 
-    <CheckBox
-        android:id="@+id/checkBox6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="conditions6" />
+            <TextView
+                style="@style/DescText"
+                android:text="Test Resource canary need Enter and exit the page a few seconds later to get the issue result\nPS:Will only be published once, if you need to publish again, you need to restart the app." />
 
+            <View style="@style/Divider" />
 
-    <CheckBox
-        android:id="@+id/checkBox7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="conditions7" />
+            <Button
+                android:id="@+id/test_hooks"
+                style="@style/EntryButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Matrix Hooks" />
 
-    <CheckBox
-        android:id="@+id/checkBox8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="conditions8" />
+            <TextView
+                style="@style/DescText"
+                android:text="Include allocation hooks, pthread creation hooks and some other hack tools to mitigate 32 bit virtual memory address insufficiency." />
 
+            <View style="@style/Divider" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="当前状态" />
+            <Button
+                android:id="@+id/test_battery"
+                style="@style/EntryButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Battery Canary" />
 
+            <TextView
+                style="@style/DescText"
+                android:text="Battery Canary detects abnormal usage of thread jiffies." />
 
+            <View style="@style/Divider" />
 
+            <Button
+                android:id="@+id/test_io"
+                style="@style/EntryButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="IO Canary" />
+
+            <Button
+                android:id="@+id/test_sqlite_lint"
+                style="@style/EntryButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="SQLite Lint" />
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

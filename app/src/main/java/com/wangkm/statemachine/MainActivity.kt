@@ -1,8 +1,12 @@
 package com.wangkm.statemachine
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.CompoundButton
 import androidx.appcompat.app.AppCompatActivity
+import com.wangkm.statemachine.io.TestIOActivity
+import com.wangkm.statemachine.issue.IssuesMap
+import com.wangkm.statemachine.resource.TestLeakActivity
+import com.wangkm.statemachine.trace.TestTraceMainActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -30,67 +34,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initAction() {
-        checkBox1.setOnCheckedChangeListener(MyOnCheckedChangeListener())
-        checkBox2.setOnCheckedChangeListener(MyOnCheckedChangeListener())
-        checkBox3.setOnCheckedChangeListener(MyOnCheckedChangeListener())
-        checkBox4.setOnCheckedChangeListener(MyOnCheckedChangeListener())
-        checkBox5.setOnCheckedChangeListener(MyOnCheckedChangeListener())
-        checkBox6.setOnCheckedChangeListener(MyOnCheckedChangeListener())
-        checkBox7.setOnCheckedChangeListener(MyOnCheckedChangeListener())
-        checkBox8.setOnCheckedChangeListener(MyOnCheckedChangeListener())
-    }
-
-
-
-    inner class MyOnCheckedChangeListener : CompoundButton.OnCheckedChangeListener {
-        override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
-            when (buttonView.id) {
-                R.id.checkBox1 -> {
-                    if(isChecked){
-                        MODE = MODE or STATUS_1
-                        textView.text = MODE.toString()
-                    }else{
-                        MODE = MODE xor STATUS_1
-                        textView.text = MODE.toString()
-                    }
-                }
-                R.id.checkBox2 -> {
-                    if(isChecked){
-                        MODE = MODE or STATUS_2
-                        textView.text = MODE.toString()
-                    }else{
-                        MODE = MODE xor STATUS_2
-                        textView.text = MODE.toString()
-                    }
-                }
-                R.id.checkBox3 -> {
-                    if(isChecked){
-                        MODE = MODE or STATUS_3
-                        textView.text = MODE.toString()
-                    }else{
-                        MODE = MODE xor STATUS_3
-                        textView.text = MODE.toString()
-                    }
-                }
-                R.id.checkBox4 -> {
-                    if(isChecked){
-                        MODE = MODE or STATUS_4
-                        textView.text = MODE.toString()
-                    }else{
-                        MODE = MODE xor STATUS_4
-                        textView.text = MODE.toString()
-                    }
-                }
-                R.id.checkBox5 -> {
-                }
-                R.id.checkBox6 -> {
-                }
-                R.id.checkBox7 -> {
-                }
-                R.id.checkBox8 -> {
-                }
-            }
+        test_trace.setOnClickListener {
+            val intent = Intent(this@MainActivity, TestTraceMainActivity::class.java)
+            startActivity(intent)
         }
-
+        test_leak.setOnClickListener {
+            val intent = Intent(this@MainActivity, TestLeakActivity::class.java)
+            startActivity(intent)
+        }
+        test_io.setOnClickListener {
+            val intent = Intent(this@MainActivity, TestIOActivity::class.java)
+            startActivity(intent)
+        }
     }
+
+
+    override fun onResume() {
+        super.onResume()
+        IssuesMap.clear()
+    }
+
+
+
 }

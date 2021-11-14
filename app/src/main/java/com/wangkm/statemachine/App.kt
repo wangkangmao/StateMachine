@@ -32,11 +32,10 @@ class App:Application() {
 
     val TAG  = "MyApp"
 
-    private val sContext: Context? = null
-
-
     override fun onCreate() {
         super.onCreate()
+
+        sContext = this
 
         // 监控模块开关
         val dynamicConfig = DynamicConfigImplDemo()
@@ -45,6 +44,26 @@ class App:Application() {
         // 构建性能追踪器
         val tracePlugin = configureTracePlugin(dynamicConfig)
         builder.plugin(tracePlugin)
+
+
+        // Configure resource canary.
+        val resourcePlugin = configureResourcePlugin(dynamicConfig)
+        builder.plugin(resourcePlugin)
+
+
+        // Configure io canary.
+        val ioCanaryPlugin = configureIOCanaryPlugin(dynamicConfig)
+        builder.plugin(ioCanaryPlugin)
+
+
+        // Configure SQLite lint plugin.
+        val sqLiteLintPlugin = configureSQLiteLintPlugin()
+        builder.plugin(sqLiteLintPlugin)
+
+
+        // Configure battery canary.
+        val batteryMonitorPlugin = configureBatteryCanary()
+        builder.plugin(batteryMonitorPlugin)
 
         // 初始化Matrix
         Matrix.init(builder.build())
@@ -141,8 +160,11 @@ class App:Application() {
         return BatteryCanaryInitHelper.createMonitor()
     }
 
-    fun getContext(): Context? {
-        return sContext
+    companion object{
+        private lateinit var sContext: Context
+        fun getContext(): Context {
+            return sContext
+        }
     }
 
 }
